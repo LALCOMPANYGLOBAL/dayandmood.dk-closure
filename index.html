@@ -4,7 +4,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Day & Mood – Webshop Closed</title>
+  <title>Day & Mood | A New Chapter</title>
 
   <style>
     * {
@@ -14,87 +14,170 @@
     body {
       margin: 0;
       min-height: 100vh;
+      background: #ffffff;
+      color: #171717;
+      font-family: "Helvetica Neue", Arial, sans-serif;
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f7f5f1;
-      color: #333;
-      font-family: Arial, sans-serif;
-      text-align: center;
-      padding: 24px;
+      padding: 45px 22px;
     }
 
-    .container {
-      max-width: 600px;
+    .page {
       width: 100%;
-      background: #ffffff;
-      padding: 55px 35px;
+      max-width: 1050px;
+      text-align: center;
+      padding: 30px 20px;
     }
 
-    h1 {
-      font-size: 30px;
+    .logo {
+      display: block;
+      width: min(360px, 75%);
+      max-height: 125px;
+      object-fit: contain;
+      margin: 0 auto 65px;
+    }
+
+    .headline {
+      font-family: "Bodoni MT", "Didot", "Times New Roman", serif;
+      font-size: clamp(38px, 6vw, 66px);
       font-weight: 400;
+      font-style: italic;
+      line-height: 1.18;
+      margin: 0 auto 38px;
+      max-width: 850px;
+    }
+
+    .divider {
+      width: 65px;
+      height: 1px;
+      background: #222222;
+      margin: 0 auto 35px;
+    }
+
+    .message {
+      font-size: 17px;
+      line-height: 2;
       letter-spacing: 2px;
-      margin-bottom: 25px;
+      max-width: 780px;
+      margin: 0 auto;
     }
 
-    p {
-      font-size: 16px;
-      line-height: 1.8;
-      color: #666;
-    }
-
-    .timer {
-      margin: 30px 0;
-      font-size: 16px;
-      color: #555;
-    }
-
-    #countdown {
-      font-size: 24px;
-      font-weight: bold;
-      color: #333;
+    .message p {
+      margin: 0 0 22px;
     }
 
     .button {
       display: inline-block;
-      padding: 15px 30px;
-      background: #333;
-      color: white;
+      margin-top: 24px;
+      padding: 22px 48px;
+      background: #222222;
+      color: #ffffff;
       text-decoration: none;
-      font-size: 13px;
-      letter-spacing: 1px;
-      margin-top: 15px;
+      font-size: 14px;
+      letter-spacing: 4px;
+      transition: background 0.3s ease;
     }
 
     .button:hover {
-      background: #555;
+      background: #555555;
+    }
+
+    .redirect {
+      margin-top: 38px;
+      font-size: 14px;
+      letter-spacing: 4px;
+    }
+
+    #countdown {
+      font-size: 22px;
+      font-weight: 600;
+      margin: 0 5px;
+    }
+
+    @media (max-width: 600px) {
+      body {
+        padding: 25px 16px;
+      }
+
+      .page {
+        padding: 20px 5px;
+      }
+
+      .logo {
+        margin-bottom: 48px;
+      }
+
+      .headline {
+        font-size: 39px;
+      }
+
+      .message {
+        font-size: 14px;
+        letter-spacing: 1.2px;
+      }
+
+      .button {
+        padding: 18px 24px;
+        font-size: 12px;
+        letter-spacing: 2px;
+      }
+
+      .redirect {
+        font-size: 11px;
+        letter-spacing: 2px;
+      }
     }
   </style>
 </head>
 
 <body>
 
-  <main class="container">
+  <main class="page">
 
-    <h1>DAY & MOOD</h1>
+    <img
+      class="logo"
+      src="day-mood-logo.png"
+      alt="DAY & MOOD"
+    >
 
-    <p>
-      Thank you for being part of our journey.
-    </p>
+    <h1 class="headline">
+      Every journey leaves<br>
+      a little something behind.
+    </h1>
 
-    <p>
-      Our Day & Mood webshop is now closed.
-      You can continue shopping with us at Still Nordic.
-    </p>
+    <div class="divider"></div>
 
-    <div class="timer">
-      Redirecting in <strong id="countdown">15</strong> seconds
-    </div>
+    <section class="message">
 
-    <a class="button" href="https://stillnordic.com/">
-      CONTINUE TO STILL NORDIC
+      <p>
+        Thank you for being part of the Day &amp; Mood journey
+        at dayandmood.dk.
+      </p>
+
+      <p>
+        Our webshop is now closed, but the journey continues.
+      </p>
+
+      <p>
+        Discover the collection at Still Nordic.
+      </p>
+
+    </section>
+
+    <a
+      class="button"
+      href="https://stillnordic.com/"
+      id="continueButton"
+    >
+      CONTINUE TO STILL NORDIC &nbsp; →
     </a>
+
+    <div class="redirect">
+      YOU'LL BE REDIRECTED IN
+      <span id="countdown">15</span>
+      SECONDS.
+    </div>
 
   </main>
 
@@ -104,8 +187,6 @@
     const countdown = document.getElementById("countdown");
     const destination = "https://stillnordic.com/";
 
-    countdown.textContent = seconds;
-
     const timer = setInterval(function () {
       seconds--;
 
@@ -113,9 +194,13 @@
 
       if (seconds <= 0) {
         clearInterval(timer);
-        window.location.href = destination;
+        window.location.replace(destination);
       }
     }, 1000);
+
+    document.getElementById("continueButton").addEventListener("click", function () {
+      clearInterval(timer);
+    });
   </script>
 
 </body>
