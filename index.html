@@ -5,8 +5,11 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Day & Mood – Webshop Closed</title>
+
   <style>
-    * { box-sizing: border-box; }
+    * {
+      box-sizing: border-box;
+    }
 
     body {
       margin: 0;
@@ -14,66 +17,74 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      background: #f5f3ee;
-      color: #282820;
+      background: #f7f5f1;
+      color: #333;
       font-family: Arial, sans-serif;
       text-align: center;
       padding: 24px;
     }
 
     .container {
-      max-width: 520px;
+      max-width: 600px;
       width: 100%;
-      padding: 55px 30px;
-    }
-
-    .brand {
-      font-family: Georgia, serif;
-      font-size: 36px;
-      letter-spacing: 5px;
-      margin-bottom: 55px;
+      background: #ffffff;
+      padding: 55px 35px;
     }
 
     h1 {
-      font-family: Georgia, serif;
       font-size: 30px;
-      font-weight: normal;
-      margin-bottom: 20px;
+      font-weight: 400;
+      letter-spacing: 2px;
+      margin-bottom: 25px;
     }
 
     p {
-      color: #68685f;
+      font-size: 16px;
       line-height: 1.8;
-      font-size: 15px;
+      color: #666;
     }
 
     .timer {
       margin: 30px 0;
-      font-size: 14px;
-      letter-spacing: 1px;
+      font-size: 16px;
+      color: #555;
+    }
+
+    #countdown {
+      font-size: 24px;
+      font-weight: bold;
+      color: #333;
     }
 
     .button {
       display: inline-block;
-      background: #292a23;
+      padding: 15px 30px;
+      background: #333;
       color: white;
-      padding: 16px 32px;
       text-decoration: none;
-      font-size: 12px;
-      letter-spacing: 1.5px;
+      font-size: 13px;
+      letter-spacing: 1px;
+      margin-top: 15px;
     }
 
-    .button:hover { background: #55564c; }
+    .button:hover {
+      background: #555;
+    }
   </style>
 </head>
-<body>
-  <main class="container">
-    <div class="brand">DAY & MOOD</div>
 
-    <h1>Our webshop is now closed.</h1>
+<body>
+
+  <main class="container">
+
+    <h1>DAY & MOOD</h1>
 
     <p>
       Thank you for being part of our journey.
+    </p>
+
+    <p>
+      Our Day & Mood webshop is now closed.
       You can continue shopping with us at Still Nordic.
     </p>
 
@@ -81,27 +92,31 @@
       Redirecting in <strong id="countdown">15</strong> seconds
     </div>
 
-    <a class="button"
-       href="https://stillnordic.com/"
-       id="continueButton">
-       CONTINUE TO STILL NORDIC
+    <a class="button" href="https://stillnordic.com/">
+      CONTINUE TO STILL NORDIC
     </a>
+
   </main>
 
   <script>
     let seconds = 15;
+
     const countdown = document.getElementById("countdown");
     const destination = "https://stillnordic.com/";
 
-    const timer = setInterval(() => {
+    countdown.textContent = seconds;
+
+    const timer = setInterval(function () {
       seconds--;
+
       countdown.textContent = seconds;
 
       if (seconds <= 0) {
         clearInterval(timer);
-        window.location.replace(destination);
+        window.location.href = destination;
       }
     }, 1000);
   </script>
+
 </body>
 </html>
